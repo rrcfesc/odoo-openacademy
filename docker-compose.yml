@@ -6,4 +6,4 @@ services:
       - "8069:8069"
     container_name: benandfrank-odoo
     volumes:
-          - ./openacademy:/home/myosusr/openacademy
+          - ./openacademy:/home/myosusr/openacademy-repo/openacademy
