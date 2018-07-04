@@ -1,0 +1,9 @@
+version: '2'
+services:
+  web:
+    image: odoovauxoo:11.0
+    ports:
+      - "8069:8069"
+    container_name: benandfrank-odoo
+    volumes:
+          - ./openacademy:/home/myosusr/openacademy
