@@ -16,13 +16,14 @@
     -->
 
     <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="openacademy.action_window">
-      <field name="name">openacademy window</field>
-      <field name="res_model">openacademy.openacademy</field>
+    <record model="ir.actions.act_window" id="openacademy.course_list_action">
+      <field name="name">Courses</field>
+      <field name="res_model">openacademy.course</field>
       <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Create the first course</p>
+      </field>
     </record>
-    -->
 
     <!-- server action to the one above -->
     <!--
@@ -41,14 +42,10 @@
     -->
 
     <!-- Top menu item -->
-    <!--
-    <menuitem name="openacademy" id="openacademy.menu_root"/>
-    -->
+    <menuitem name="Open Academy" id="openacademy_menu_root"/>
     <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="openacademy.menu_1" parent="openacademy.menu_root"/>
-    <menuitem name="Menu 2" id="openacademy.menu_2" parent="openacademy.menu_root"/>
-    -->
+    <menuitem name="OpenAcademy Menu" id="openacademy.menu_1" parent="openacademy_menu_root"/>
+    <menuitem name="Curses" id="openacademy.menu_2" parent="openacademy.menu_1" action="course_list_action"/>
     <!-- actions -->
     <!--
     <menuitem name="List" id="openacademy.menu_1_list" parent="openacademy.menu_1"
