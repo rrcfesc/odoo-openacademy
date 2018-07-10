@@ -1,15 +1,29 @@
 # -*- coding: utf-8 -*-
 #import pdb;
 
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 import time
-class openacademy(models.Model):
+class Course(models.Model):
     _name = 'openacademy.course'
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
     responsible_id = fields.Many2one('res.users', string="Responsible", Index= True, ondelete = "set null", default = lambda self, *a: self.env.uid)
     session_ids = fields.One2many('openacademy.session', 'course_id')
+
+    _sql_constraints = [
+        ('name_description_check', 'CHECK(name!= description)', "The title of the coyrse not be description"),
+        ('name_unique', 'UNIQUE(name)', 'The course title must be unique')
+    ]
+
+    def copy(self, default= None):
+        if default is None:
+            default = {}
+        default['name'] = self.name + 'otro'
+        return super(Course, self).copy(default)
+
+
+
 
 class Session(models.Model):
     _name = 'openacademy.session'
@@ -29,3 +43,28 @@ class Session(models.Model):
     def _taken_seats(self):
         for record in self.filtered(lambda r: r.seats != 0):
             record.taken_seats = 100.0 *len(record.attendee_ids) /record.seats
+
+    @api.onchange('seats', 'attendee_ids')
+    def _verify_valid_seats(self):
+        if self.seats < 0 :
+            self.active = False
+            return {
+                'warning' : {
+                    'title' : 'Incorrect seats Value',
+                    'message' : 'Incorrect of seats may not be negative '
+                }
+            }
+        if self.seats < len(self.attendee_ids) :
+            self.active = False
+            return {
+                'warning' : {
+                    'title': 'To many attendees',
+                    'message': 'Increment seats or remove attendees '
+                }
+            }
+        self.active = True
+    @api.constrains('instructor_id', 'attendee_ids')
+    def _check_instructor_not_in_attendees(self):
+        for record in self.filtered('instructor_id'):
+            if record.instructor_id in record.attendee_ids:
+                raise exceptions.ValidationError("Asession instructor cant be an attendee");
