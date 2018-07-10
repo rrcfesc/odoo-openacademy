@@ -1,15 +1,15 @@
 <odoo>
     <data>
-        <!--record id="course0" model="openacademy.course">
+        <record id="course0" model="openacademy.course">
             <field name="name">Course 0</field>
-            <field name="description">Curso0 por que yo asi lo dije</field>
+            <field name="description">Curso 1 Vauxoo</field>
         </record>
         <record id="course1" model="openacademy.course">
-            <field name="name">Course 44</field>
+            <field name="name">Course 2 Vauxoo</field>
         </record>
         <record id="course2" model="openacademy.course">
             <field name="name">Course 2</field>
-            <field name="description">Curso 2 por que yo asi lo dije</field>
-        </record-->
+            <field name="description">Curso 3</field>
+        </record>
     </data>
 </odoo>

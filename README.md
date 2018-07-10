@@ -42,3 +42,12 @@ class LessMinimalModel(models.Model):
     name = fields.Char()
 ```
 
+# Uso de Pdb
+
+Es importante revisar el uso de pdb para hacer uso de el usa
+
+```python
+import pdb;
+
+
+```

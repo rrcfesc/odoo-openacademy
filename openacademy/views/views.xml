@@ -66,17 +66,20 @@
                     <group>
                         <field name="name" />
                         <field name="start_date" />
+                        <field name="datetime_test" />
                         <field name="duration" />
                         <field name="seats" />
+                        <field name="taken_seats" widget="progressbar" />
                         <field name="instructor_id" />
                         <field name="course_id" />
                         <label for="attendee_ids" />
                         <field name="attendee_ids" />
+                        <field name="active" />
                     </group>
                 </sheet>
             </form>
         </field>
-    </record>
+    </record>º
     <record model="ir.ui.view" id="session_list_view">
         <field name="name">session.list</field>
         <field name="model">openacademy.session</field>
@@ -84,11 +87,14 @@
             <tree string="Course Tree">
                 <field name="name" />
                 <field name="start_date" />
+                <field name="datetime_test" />
                 <field name="duration" />
                 <field name="seats" />
+                <field name="taken_seats" widget="progressbar" />
                 <field name="instructor_id" />
                 <field name="course_id" />
                 <field name="attendee_ids" />
+                <field name="active" />
             </tree>
         </field>
     </record>
