@@ -57,11 +57,16 @@
     </record>
 
 
+
+
+
+
+
     <record model="ir.ui.view" id="session_form_view">
         <field name="name">session.form</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <form string="Course Form">
+            <form string="Session Form">
                 <sheet>
                     <group>
                         <field name="name" />
@@ -81,10 +86,10 @@
         </field>
     </record>º
     <record model="ir.ui.view" id="session_list_view">
-        <field name="name">session.list</field>
+        <field name="name">session.tree</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <tree string="Course Tree">
+            <tree string="Session  Tree" colors="#0000ff:duration&lt;5;red:duration&gt;15">
                 <field name="name" />
                 <field name="start_date" />
                 <field name="datetime_test" />
@@ -102,7 +107,7 @@
         <field name="name">session.list</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <search string="session Search">
+            <search string="Session Search">
                 <field name="name" />
                 <field name="start_date" />
                 <field name="duration" />
