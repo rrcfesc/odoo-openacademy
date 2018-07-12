@@ -15,7 +15,7 @@
                             <field name="end_date" />
                             <field name="seats" />
                             <field name="taken_seats" widget="progressbar" />
-                            <field name="instructor_id" />
+                            <field name="instructor_id" widget="selection"/>
                             <field name="course_id" />
                             <label for="attendee_ids" />
                             <field name="attendee_ids" />
