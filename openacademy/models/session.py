@@ -21,6 +21,13 @@ class Session(models.Model):
     attendee_ids    = fields.Many2many("res.partner", string= "Atendee")
     taken_seats     = fields.Float(compute="_taken_seats")
     active          = fields.Boolean(default=True)
+    attendee_count  = fields.Integer(compute = "_get_attendee_count", store= True)
+
+    @api.depends('attendee_ids')
+    def _get_attendee_count(self):
+        for record in self:
+            record.attendee_count = len(record.attendee_ids)
+
 
     @api.depends('start_date','duration')
     def _get_end_date(self):
