@@ -11,6 +11,7 @@
                             <field name="start_date" />
 
                             <field name="duration" />
+                            <field name="hours" />
                             <field name="end_date" />
                             <field name="seats" />
                             <field name="taken_seats" widget="progressbar" />
@@ -19,6 +20,7 @@
                             <label for="attendee_ids" />
                             <field name="attendee_ids" />
                             <field name="active" />
+                            <field name="hours"/>
                         </group>
                     </sheet>
                 </form>
@@ -32,6 +34,7 @@
                     <field name="name" />
                     <field name="start_date" />
                     <field name="duration" />
+                    <field name="hours" />
                     <field name="end_date" />
                     <field name="seats" />
                     <field name="taken_seats" widget="progressbar" />
@@ -122,6 +125,18 @@
                 </kanban>
             </field>
         </record>
+        <record model="ir.ui.view" id="session_gantt_view">
+            <field name="name">session.gantt</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+               <gantt string="Session Gantt" color="course_id"
+                       date_start="start_date" date_delay="hours">
+                    <level object="res.partner" link="instructor_id">
+                        <field name="name"/>
+                    </level>
+                </gantt>
+            </field>
+       </record>
         <record model="ir.actions.act_window" id="openacademy.session_list_action">
               <field name="name">Session</field>
               <field name="res_model">openacademy.session</field>
