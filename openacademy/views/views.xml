@@ -42,7 +42,10 @@
             <search string="Course Search">
                 <field name="name" string="Name Search" />
                 <field name="description" />
-                <field name="responsible_id" />
+                <filter name="my_courses" string="MY Courses" domain="[('responsible_id','=',uid)]" />
+                <group string="Group By">
+                    <filter name="by_responsible" string="Responsible" context="{'group_by':'responsible_id'}" />
+                </group>
             </search>
         </field>
     </record>
