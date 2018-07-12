@@ -14,7 +14,7 @@ class Session(models.Model):
     start_date      = fields.Date(default= fields.Date.today)
     end_date        = fields.Date(string="End Date", store = True, compute="_get_end_date", inverse ="_set_end_date")
     datetime_test   = fields.Datetime(default = fields.Datetime.now)
-    duration        = fields.Float(digits=(6,2), help="Duration in days", compute="_set_end_date", inverse ="_get_end_date")
+    duration        = fields.Float(digits=(6,2), help="Duration in days")
     seats           = fields.Integer(string="Number of seats");
     instructor_id   = fields.Many2one("res.partner", string="Instructor", domain=["|", ('instructor', '=', True), ('category_id.name', 'ilike', 'Teacher')])
     course_id       = fields.Many2one('openacademy.course', ondelete="cascade", string="Course", required = True)
