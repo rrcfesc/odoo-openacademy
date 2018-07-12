@@ -2,20 +2,39 @@
 #import pdb;
 
 from odoo import models, fields, api, exceptions
+import time
+from psycopg2 import IntegrityError
+from datetime import timedelta
+import pdb
 
 class Session(models.Model):
     _name = 'openacademy.session'
 
     name = fields.Char(required = True)
-    start_date =  fields.Date(default= fields.Date.today)
-    datetime_test =fields.Datetime(default = fields.Datetime.now)
-    duration = fields.Float(digits=(6,2), help="Duration in days")
-    seats = fields.Integer(string="Number of seats");
-    instructor_id = fields.Many2one("res.partner", string="Instructor", domain=["|", ('instructor', '=', True), ('category_id.name', 'ilike', 'Teacher')])
-    course_id = fields.Many2one('openacademy.course', ondelete="cascade", string="Course", required = True)
-    attendee_ids =  fields.Many2many("res.partner", string= "Atendee")
+    start_date      = fields.Date(default= fields.Date.today)
+    end_date        = fields.Date(string="End Date", store = True, compute="_get_end_date", inverse ="_set_end_date")
+    datetime_test   = fields.Datetime(default = fields.Datetime.now)
+    duration        = fields.Float(digits=(6,2), help="Duration in days", compute="_set_end_date", inverse ="_get_end_date")
+    seats           = fields.Integer(string="Number of seats");
+    instructor_id   = fields.Many2one("res.partner", string="Instructor", domain=["|", ('instructor', '=', True), ('category_id.name', 'ilike', 'Teacher')])
+    course_id       = fields.Many2one('openacademy.course', ondelete="cascade", string="Course", required = True)
+    attendee_ids    = fields.Many2many("res.partner", string= "Atendee")
     taken_seats     = fields.Float(compute="_taken_seats")
     active          = fields.Boolean(default=True)
+
+    @api.depends('start_date','duration')
+    def _get_end_date(self):
+        for record in self.filtered('start_date'):
+            start_date = fields.Datetime.from_string(record.start_date)
+            record.end_date = start_date + timedelta(days = record.duration, seconds= -1)
+
+    @api.depends('start_date', 'end_date')
+    def _set_end_date(self):
+        for record in self.filtered('start_date'):
+            start_date = fields.Datetime.from_string(record.start_date)
+            end_date = fields.Datetime.from_string(record.end_date)
+            record.duration = (end_date - start_date).days + 1
+
 
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):

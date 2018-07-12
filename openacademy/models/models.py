@@ -3,6 +3,8 @@
 
 from odoo import models, fields, api, exceptions
 import time
+
+
 class Course(models.Model):
     _name = 'openacademy.course'
 
