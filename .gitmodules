@@ -1,4 +1,0 @@
-[submodule "odoo-repo"]
-	path = odoo-repo
-	url = https://github.com/odoo/odoo.git
-	branch = 11.0
