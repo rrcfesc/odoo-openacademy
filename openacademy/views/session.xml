@@ -9,7 +9,6 @@
                         <group>
                             <field name="name" />
                             <field name="start_date" />
-
                             <field name="duration" />
                             <field name="hours" />
                             <field name="end_date" />
@@ -27,7 +26,7 @@
             </field>
         </record>º
         <record model="ir.ui.view" id="session_tree_view">
-            <field name="name">session.list</field>
+            <field name="name">session.tree</field>
             <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
                 <tree string="Session  Tree" decoration-success="duration &gt; 5 and duration &lt;15" decoration-info="duration&lt;5" decoration-danger="duration&gt;15" editable="top">
@@ -46,7 +45,7 @@
             </field>
         </record>
         <record model="ir.ui.view" id="session_search_view">
-            <field name="name">session.list</field>
+            <field name="name">session.search</field>
             <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
                 <search string="Session Search">

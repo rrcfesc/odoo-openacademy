@@ -8,3 +8,4 @@ services:
     volumes:
           - ./openacademy:/home/myosusr/openacademy-repo/openacademy
           - ./.odoorc:/home/myosusr/.odoorc
+          - ./odoo-repo:/home/myosusr/odoo-repo
