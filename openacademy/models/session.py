@@ -65,7 +65,7 @@ class Session(models.Model):
             self.active = False
             return {
                 'warning' : {
-                    'title' : 'Incorrect seats Value',
+                    'title' : _('Incorrect seats Value'),
                     'message' : 'Incorrect of seats may not be negative '
                 }
             }
@@ -73,7 +73,7 @@ class Session(models.Model):
             self.active = False
             return {
                 'warning' : {
-                    'title': 'To many attendees',
+                    'title': _('To many attendees'),
                     'message': 'Increment seats or remove attendees '
                 }
             }
