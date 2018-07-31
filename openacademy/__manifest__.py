@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'board'],
 
     # always loaded
     'data': [
@@ -30,7 +30,9 @@
         'views/partner.xml',
         'views/session.xml',
         'views/wizard.xml',
-'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'views/reports.xml',
+        #'views/session_board.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
