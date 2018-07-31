@@ -31,7 +31,7 @@
         'views/session.xml',
         'views/wizard.xml',
         'security/ir.model.access.csv',
-        'views/reports.xml',
+        'reports/reports.xml',
         #'views/session_board.xml',
     ],
     # only loaded in demonstration mode
