@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #import pdb;
 
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions, _
 import time
 from psycopg2 import IntegrityError
 from datetime import timedelta
