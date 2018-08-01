@@ -6,6 +6,8 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <h2 t-field="doc.name"/>
+                        <h2>Printed User <span t-esc="env.user.name"></span></h2>
+                        <h2>Variable <span t-esc="other_variable"></span></h2>
                         <p>From <span t-field="doc.start_date"/> to <span t-field="doc.end_date"/></p>
                         <h3>Attendees:</h3>
                         <ul>
