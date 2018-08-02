@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rrcfesc/odoo-openacademy.svg?branch=master)](https://travis-ci.org/rrcfesc/odoo-openacademy)
+
 # Construir un Módulo (Resumen)
 ## Estructura de un Módulo
 1. Un módulo de Odoo es declarado por su manifiesto.
