@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
-#import pdb;
 
 from odoo import models, fields, api, exceptions, _
-import time
-from psycopg2 import IntegrityError
 from datetime import timedelta
-import pdb
 
 class Session(models.Model):
     _name = 'openacademy.session'
@@ -15,7 +11,7 @@ class Session(models.Model):
     end_date        = fields.Date(string="End Date", store = True, compute="_get_end_date", inverse ="_set_end_date")
     datetime_test   = fields.Datetime(default = fields.Datetime.now)
     duration        = fields.Float(digits=(6,2), help="Duration in days")
-    seats           = fields.Integer(string="Number of seats");
+    seats           = fields.Integer(string="Number of seats")
     instructor_id   = fields.Many2one("res.partner", string="Instructor", domain=["|", ('instructor', '=', True), ('category_id.name', 'ilike', 'Teacher')])
     course_id       = fields.Many2one('openacademy.course', ondelete="cascade", string="Course", required = True)
     attendee_ids    = fields.Many2many("res.partner", string= "Atendee")
@@ -31,8 +27,8 @@ class Session(models.Model):
             record.hours = record.duration * 24
 
     def _set_hours(self):
-        for r in self.filtered('duration'):
-            r.duration = r.hours / 24
+        for session_time in self.filtered('duration'):
+            session_time.duration = session_time.hours / 24
 
     @api.depends('attendee_ids')
     def _get_attendee_count(self):
@@ -82,4 +78,4 @@ class Session(models.Model):
     def _check_instructor_not_in_attendees(self):
         for record in self.filtered('instructor_id'):
             if record.instructor_id in record.attendee_ids:
-                raise exceptions.ValidationError("Asession instructor cant be an attendee");
+                raise exceptions.ValidationError("Asession instructor cant be an attendee")

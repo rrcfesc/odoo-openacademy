@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+
 from psycopg2 import IntegrityError
-from odoo import exceptions
 from odoo.tests import common
 from odoo.exceptions import ValidationError
 from odoo.tools import mute_logger  # noqa
@@ -11,7 +11,6 @@ class GlobalTestOpenAcademySession(common.TransactionCase):
 
     # Pseudo-constructor method of test setUp
     def setUp(self):
-
         # Define global variables to test methods
         super(GlobalTestOpenAcademySession, self).setUp()
         self.session = self.env['openacademy.session']

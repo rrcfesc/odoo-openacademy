@@ -1,6 +1,4 @@
 import jsonrpclib
-import pdb
-
 
 HOST = 'localhost'
 PORT = 8069
@@ -10,9 +8,7 @@ PASS = 'admin'
 ROOT = 'http://%s:%d/xmlrpc/' % (HOST, PORT)
 # server proxy object
 url = "http://%s:%s/jsonrpc" % (HOST, PORT)
-pdb.set_trace()
 server = jsonrpclib.Server(url)
-pdb.set_trace()
 # log in the given database
 uid = server.call(service="common", method="login", args=[DB, USER, PASS])
 

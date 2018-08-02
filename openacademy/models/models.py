@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 #import pdb;
 
-from odoo import models, fields, api, exceptions
-import time
-
+from odoo import models, fields
 
 class Course(models.Model):
     _name = 'openacademy.course'
@@ -23,6 +21,3 @@ class Course(models.Model):
             default = {}
         default['name'] = self.name + 'otro'
         return super(Course, self).copy(default)
-
-
-
