@@ -2,7 +2,6 @@
 
 from psycopg2 import IntegrityError
 from odoo.tests import common
-from odoo.exceptions import ValidationError
 from odoo.tools import mute_logger  # noqa
 
 class GlobalTestOpenAcademySession(common.TransactionCase):
