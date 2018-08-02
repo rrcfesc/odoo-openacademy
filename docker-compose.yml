@@ -7,4 +7,6 @@ services:
     container_name: benandfrank-odoo
     volumes:
           - ./openacademy:/home/myosusr/openacademy-repo/openacademy
+          - ./webservices:/home/myosusr/openacademy-repo/webservices
           - ./.odoorc:/home/myosusr/.odoorc
+          - ./odoo-repo:/home/myosusr/odoo-repo
