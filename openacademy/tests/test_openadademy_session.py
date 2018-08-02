@@ -32,33 +32,30 @@ class GlobalTestOpenAcademySession(common.TransactionCase):
         })
         return session_id
 
-        # Test methods
-        # Mute SQL error
-        @mute_logger('odoo.sql_db')
-        def test_04_instructor_is_attendee(self):
-            """
-            Check that raise of 'A session's instructor can't be an attendee
-            """
-            test_04_instructor_is_attendee_correct = False
-            try:
-                partner_vauxoo = self.env.ref('base.res_partner_2')
-                course = self.env.ref('openacademy.course0')
-                self.create_session(
-                    name='Session test 1',
-                    seats=1,
-                    instructor=partner_vauxoo,
-                    course=course,
-                    attendees=[partner_vauxoo.id]
+    # Test methods
+    # Mute SQL error
+    @mute_logger('odoo.sql_db')
+    def test_04_instructor_is_attendee(self):
+        test_04_instructor_is_attendee_correct = False
+        try:
+            partner_vauxoo = self.env.ref('base.res_partner_2')
+            course = self.env.ref('openacademy.course0')
+            self.create_session(
+                name='Session test 1',
+                seats=1,
+                instructor=partner_vauxoo,
+                course=course,
+                attendees=[partner_vauxoo.id]
+            )
+        except ValidationError as vaidation_error:
+            test_04_instructor_is_attendee_correct = True
+            self.assertEquals(
+                vaidation_error.name, (
+                    "A session's instructor can't be an attendee"
                 )
-            except ValidationError as vaidation_error:
-                test_04_instructor_is_attendee_correct = True
-                self.assertEquals(
-                    vaidation_error.name, (
-                        "A session's instructor can't be an attendee"
-                    )
-                )
+            )
 
-            self.assertTrue(test_04_instructor_is_attendee_correct)
+        self.assertTrue(test_04_instructor_is_attendee_correct)
     # Mute SQL error
     @mute_logger('odoo.sql_db')
     def test_20_session_without_course(self):
