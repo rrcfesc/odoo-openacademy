@@ -15,12 +15,12 @@ uid = SERVER.call(service="common", method="login", args=[DB, USER, PASS])
 
 # helper function for invoking model methods
 def invoke(model, method, *args):
-    ARGS= [DB, uid, PASS, model, method] + list(args)
-    return SERVER.call(service="object", method="execute", args=ARGS)
+    argsd= [DB, uid, PASS, model, method] + list(args)
+    return SERVER.call(service="object", method="execute", args=argsd)
 
 
 # create a new note
-ARGS = {
+ARGST = {
     'name': 'New course'
 }
-NOTE_ID = invoke('openacademy.session', 'create', ARGS)
+NOTE_ID = invoke('openacademy.session', 'create', ARGST)
