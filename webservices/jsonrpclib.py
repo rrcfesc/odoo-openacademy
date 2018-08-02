@@ -7,20 +7,20 @@ USER = 'admin'
 PASS = 'admin'
 ROOT = 'http://%s:%d/xmlrpc/' % (HOST, PORT)
 # server proxy object
-url = "http://%s:%s/jsonrpc" % (HOST, PORT)
-server = jsonrpclib.Server(url)
+Url_server = "http://%s:%s/jsonrpc" % (HOST, PORT)
+Server = jsonrpclib.Server(url_server)
 # log in the given database
-uid = server.call(service="common", method="login", args=[DB, USER, PASS])
+uid = Server.call(service="common", method="login", args=[DB, USER, PASS])
 
 
 # helper function for invoking model methods
 def invoke(model, method, *args):
-    args = [DB, uid, PASS, model, method] + list(args)
-    return server.call(service="object", method="execute", args=args)
+    Args2= [DB, uid, PASS, model, method] + list(args)
+    return Server.call(service="object", method="execute", args=Args2)
 
 
 # create a new note
-args = {
+Args = {
     'name': 'New course'
 }
-note_id = invoke('openacademy.session', 'create', args)
+Note_id = invoke('openacademy.session', 'create', Args)
